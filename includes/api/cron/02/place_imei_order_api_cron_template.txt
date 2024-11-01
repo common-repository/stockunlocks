@@ -1,0 +1,16 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+/**
+ * @file
+ * Dynamically generated connection details for a Service Provider.
+ * This file is used for cron based API 'Actions'
+ * This is from UnlockBase, the API remote client enabled connection.
+ * @link http://www.UnlockBase.com UnlockBase Client Remote API. @endlink
+ */
+
+  // error_log( 'UNLOCKBASE PRE SUBMIT ORDER : $suwp_model_id = '. $suwp_model_id . ', $suwp_network_id = ' . $suwp_network_id . ', $suwp_mep_id = ' . $suwp_mep_id . ', $suwp_dhru_imei = ' . $suwp_dhru_imei );
+
+  /* Call the API */
+  $api = new StockunlocksUnlockBase_PLACEIMEIORDER_SUAPIPROVIDERNUM();

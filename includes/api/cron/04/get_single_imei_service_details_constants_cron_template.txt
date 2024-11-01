@@ -1,0 +1,68 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+/**
+ * @file
+ * Dynamically generated connection details for a Service Provider.
+ * This file is used for cron based API 'Actions'
+ * This is from iPhoneAdmin, the API remote client enabled connection.
+ * @link https://www.iPhoneAdmin.com/home/reseller iPhoneAdmin Client Remote API. @endlink
+ */
+
+define("SUWP_IPHONEADMIN_REQUESTFORMAT_SINGLEIMEISERVICEDEETS_SUAPIPROVIDERNUM", "JSON");
+define("SUWP_IPHONEADMIN_URL_SINGLEIMEISERVICEDEETS_SUAPIPROVIDERNUM", $suwp_dhru_url);
+define("SUWP_IPHONEADMIN_USERNAME_SINGLEIMEISERVICEDEETS_SUAPIPROVIDERNUM", $suwp_dhru_username);
+define("SUWP_IPHONEADMIN_API_ACCESS_KEY_SINGLEIMEISERVICEDEETS_SUAPIPROVIDERNUM", $suwp_dhru_api_key);
+
+if (!extension_loaded('curl')) {
+  trigger_error('cURL extension not installed', E_USER_ERROR);
+}
+
+class StockunlocksiPhoneAdmin_SINGLEIMEISERVICEDEETS_SUAPIPROVIDERNUM {
+  var $http_url = '';
+  var $http_code = '';
+
+  /**
+  * Initialize
+  */
+  function __construct() {
+
+  }
+
+  /**
+  * Return the http_code results.
+  */
+  function getHttpCode() {
+    return $this->http_code;
+  }
+
+  /**
+  * Connect with the remote client.
+  */
+   function action( $arr = array() ) {
+
+     $this->http_url = SUWP_IPHONEADMIN_URL_SINGLEIMEISERVICEDEETS_SUAPIPROVIDERNUM;
+     $ch = curl_init( $this->http_url );
+
+     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+     curl_setopt( $ch, CURLOPT_TIMEOUT, 60 );
+     curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+
+     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+     curl_setopt($ch, CURLOPT_POSTFIELDS, $arr);
+
+     $response = curl_exec($ch);
+
+     if (!curl_errno($ch)) {
+       $info = curl_getinfo($ch);
+       $this->http_code = $info['http_code'];
+     }
+
+     if (is_resource($ch)) {
+         curl_close($ch);
+     }
+     
+     return (json_decode($response, TRUE));
+  }
+}

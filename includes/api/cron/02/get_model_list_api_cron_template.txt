@@ -1,0 +1,20 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+/**
+ * @file
+ * Dynamically generated connection details for a Service Provider.
+ * This file is used for cron based API 'Actions'
+ * This is from UnlockBase, the API remote client enabled connection.
+ * @link http://www.UnlockBase.com UnlockBase Client Remote API. @endlink
+ */
+
+    /*
+    * Now, let's call GetToolMobiles for this tool
+    * ============================================
+    */
+
+  /* Call the API */
+  $api = new StockunlocksUnlockBase_MODELLIST_SUAPIPROVIDERNUM();
+  

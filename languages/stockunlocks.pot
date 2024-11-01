@@ -1,0 +1,23 @@
+#: ../class-stockunlocks-admin.php:643
+msgid "Total digits"
+msgstr ""
+
+#: ../class-stockunlocks-admin.php:644
+msgid "to display dial"
+msgstr ""
+
+#: ../class-stockunlocks-admin.php:645
+msgid "Bulk Submit: One Per Line"
+msgstr ""
+
+#: ../class-stockunlocks-admin.php:646
+msgid "Response Email"
+msgstr ""
+
+#: ../class-stockunlocks-admin.php:647
+msgid "Add to your address book"
+msgstr ""
+
+#: ../class-stockunlocks-admin.php:648
+msgid "Confirm Email"
+msgstr ""

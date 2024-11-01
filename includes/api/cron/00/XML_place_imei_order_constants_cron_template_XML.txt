@@ -1,0 +1,167 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+/**
+ * @file
+ * Dynamically generated connection details for a Service Provider.
+ * This file is used for cron based API 'Actions'
+ * This is from Dhru Fusion, the API remote client enabled connection.
+ * @link http://wiki.dhru.com/Client_Remote_APi Dhru Client Remote API. @endlink
+ */
+
+// define("SUWP_DHRUFUSION_REQUESTFORMAT_PLACEIMEIORDER_SUAPIPROVIDERNUM", "JSON");
+// define("SUWP_DHRUFUSION_REQUESTFORMAT_PLACEIMEIORDER_SUAPIPROVIDERNUM", "XML");
+define("SUWP_DHRUFUSION_URL_PLACEIMEIORDER_SUAPIPROVIDERNUM", $suwp_dhru_url);
+define("SUWP_DHRUFUSION_USERNAME_PLACEIMEIORDER_SUAPIPROVIDERNUM", $suwp_dhru_username);
+define("SUWP_DHRUFUSION_API_ACCESS_KEY_PLACEIMEIORDER_SUAPIPROVIDERNUM", $suwp_dhru_api_key);
+
+
+if (!extension_loaded('curl')) {
+  trigger_error('cURL extension not installed', E_USER_ERROR);
+}
+class StockunlocksDhruFusion_PLACEIMEIORDER_SUAPIPROVIDERNUM {
+    var $objCurl;
+    var $result = array();
+    var $xml='';
+    var $http_code = '';
+
+    var $xmldata;
+
+/**
+ * Initializes xmldata.
+ */
+
+ /*
+    function __construct() {
+      $this->xmldata = new DOMDocument();
+    }
+*/
+
+/**
+ * Return the xml results.
+ */
+    function getResult()
+    {
+      return $this->result;
+    }
+
+    function getHttpCode()
+    {
+      return $this->http_code;
+    }
+
+    function checkError($result)
+    {
+      if(isset($result['ERR']))
+      {
+        // echo '<h2> Error Code: ' . $result['STATUS'] . '</h2>';
+        // echo '<h3>' . $result['ERR'] . '</h3>';
+        exit;
+      }
+    }
+    
+      function action($action, $parameters = array())
+      {
+        if (is_string($action))
+        {
+          if (is_array($parameters))
+          {
+            if (count($parameters)) {
+              $this->xmldata = new DOMDocument();
+              $request = $this->xmldata->createElement("PARAMETERS");
+              $this->xmldata->appendChild($request);
+              foreach ($parameters as $key => $val) {
+                $key = strtoupper($key);
+                $request->appendChild($this->xmldata->createElement($key, $val));
+                error_log( 'DHRU FUSION DEEEEEEEP LOOP:  key = '. $key . ', val = ' . $val );
+              }
+            }
+            $posted = array(
+              'username' => SUWP_DHRUFUSION_USERNAME_PLACEIMEIORDER_SUAPIPROVIDERNUM,
+              'apiaccesskey' => SUWP_DHRUFUSION_API_ACCESS_KEY_PLACEIMEIORDER_SUAPIPROVIDERNUM,
+              'action' => $action,
+              'parameters' => $this->xmldata->saveHTML(),
+            );
+            $crul = curl_init( SUWP_DHRUFUSION_URL_PLACEIMEIORDER_SUAPIPROVIDERNUM . '/api/index.php' );
+            curl_setopt( $crul, CURLOPT_HEADER, false );
+            curl_setopt( $crul, CURLOPT_CONNECTTIMEOUT, 10 );
+            curl_setopt( $crul, CURLOPT_TIMEOUT, 60 );
+            curl_setopt( $crul, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+            // curl_setopt( $crul, CURLOPT_FOLLOWLOCATION, true );
+            curl_setopt( $crul, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt( $crul, CURLOPT_URL, SUWP_DHRUFUSION_URL_PLACEIMEIORDER_SUAPIPROVIDERNUM . '/api/index.php');
+            curl_setopt( $crul, CURLOPT_POST, true );
+            curl_setopt( $crul, CURLOPT_POSTFIELDS, $posted);
+            $this->result = curl_exec( $crul );
+            curl_exec($crul);
+            if (!curl_errno($crul)) {
+              $info = curl_getinfo($crul);
+              $this->http_code = $info['http_code'];
+              // error_log( 'DHRU FUSION CURL HTTP_CODE = '. $http_code );
+              // echo 'Took ', $info['total_time'], ' seconds to send a request to ', $info['url'], "\n";
+            }
+            curl_close($crul);
+            error_log( 'DHRU FUSION DEEEEEEEP SUBMIT ORDER REPLY: '. print_r($this->result,true) );
+            
+          }
+        }
+      }
+
+    function XmlToArray($xml)
+    {
+      $this->xml = $xml;	
+    }
+
+    function _struct_to_array($values, &$i)
+    {
+      $child = array(); 
+      if (isset($values[$i]['value'])) array_push($child, $values[$i]['value']); 
+      
+      while ($i++ < count($values)) { 
+        switch ($values[$i]['type']) { 
+          case 'cdata': 
+                array_push($child, $values[$i]['value']); 
+          break; 
+          
+          case 'complete': 
+            $name = $values[$i]['tag'];
+            if( !empty($name)  && array_key_exists('value', $values[$i]) ) {
+              $child[$name]= ($values[$i]['value'])?($values[$i]['value']):''; 
+              if(isset($values[$i]['attributes'])) {					
+                $child[$name] = $values[$i]['attributes']; 
+              } 
+            }	
+              break; 
+          
+          case 'open': 
+            $name = $values[$i]['tag']; 
+            $size = isset($child[$name]) ? sizeof($child[$name]) : 0;
+            $child[$name][$size] = $this->_struct_to_array($values, $i); 
+          break;
+          
+          case 'close': 
+                return $child; 
+          break; 
+        }
+      }
+      return $child; 
+    }//_struct_to_array
+    function createArray()
+    { 
+      $xml    = $this->xml;
+      $values = array(); 
+      $index  = array(); 
+      $array  = array(); 
+      $parser = xml_parser_create(); 
+      xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+      xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
+      xml_parse_into_struct($parser, $xml, $values, $index);
+      xml_parser_free($parser);
+      $i = 0; 
+      $name = $values[$i]['tag']; 
+      $array[$name] = isset($values[$i]['attributes']) ? $values[$i]['attributes'] : ''; 
+      $array[$name] = $this->_struct_to_array($values, $i); 
+      return $array; 
+    }//createArray
+}

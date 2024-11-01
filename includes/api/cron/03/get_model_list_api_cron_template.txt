@@ -1,0 +1,14 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+/**
+ * @file
+ * Dynamically generated connection details for a Service Provider.
+ * This file is used for cron based API 'Actions'
+ * This is from Naksh Soft, the API remote client enabled connection.
+ * @link https://www.nakshsoft.com UnlockingPortal Client Remote API. @endlink
+ */
+
+
+$api = new StockunlocksUPAPI_MODELLIST_SUAPIPROVIDERNUM();

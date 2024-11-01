@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: StockUnlocks 1.8.5\n"
+"POT-Creation-Date: 2018-05-29 02:09+0300\n"
+"PO-Revision-Date: 2018-05-29 02:56+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../class-stockunlocks-admin.php:643
+msgid "Total digits"
+msgstr "Totalt antal siffror"
+
+#: ../class-stockunlocks-admin.php:644
+msgid "to display dial"
+msgstr "att Visa ratten"
+
+#: ../class-stockunlocks-admin.php:645
+msgid "Bulk Submit: One Per Line"
+msgstr "Bulk Submit: En per rad"
+
+#: ../class-stockunlocks-admin.php:646
+msgid "Response Email"
+msgstr "Svar e-post"
+
+#: ../class-stockunlocks-admin.php:647
+msgid "Add to your address book"
+msgstr "Lägg till oss i din adressbok"
+
+#: ../class-stockunlocks-admin.php:648
+msgid "Confirm Email"
+msgstr "Bekräfta e-postadress"

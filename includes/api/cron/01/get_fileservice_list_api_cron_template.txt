@@ -1,0 +1,14 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+/**
+ * @file
+ * Dynamically generated connection details for a Service Provider.
+ * This file is used for cron based API 'Actions'
+ * This is from GSM Fusion, the API remote client enabled connection.
+ * @link http://gsmgenie.org/gsmfusion.php GSM Fusion Client Remote API. @endlink
+ */
+
+
+$api = new StockunlocksGSMFusion_FILESERVICELIST_SUAPIPROVIDERNUM();

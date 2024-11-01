@@ -1,0 +1,15 @@
+/**
+ * All of the CSS for the admin-specific functionality should be
+ * included in this file.
+ */
+#suwp-spinner-bottom, #suwp-spinner-top {
+	background: url('/wp-admin/images/loading.gif') no-repeat;
+    background-size: 16px 16px;
+    visibility: visible;
+    float: left;
+    opacity: .7;
+    filter: opacity(70);
+    width: 16px;
+    height: 16px;
+    margin: 5px 5px 0;
+}
